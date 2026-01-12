@@ -1,0 +1,45 @@
+{
+  "data": [
+    {
+      "id": "metricValue",
+      "label": "Metric Value",
+      "type": "METRIC",
+      "options": {
+        "min": 1,
+        "max": 1
+      }
+    },
+    {
+      "id": "changePercent",
+      "label": "Change Percentage",
+      "type": "METRIC",
+      "options": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    {
+      "id": "metricLabel",
+      "label": "Metric Label",
+      "type": "DIMENSION",
+      "options": {
+        "min": 0,
+        "max": 1
+      }
+    }
+  ],
+  "style": [
+    {
+      "id": "primaryColor",
+      "label": "Primary Color",
+      "type": "FILL_COLOR",
+      "defaultValue": "#ffeb00"
+    },
+    {
+      "id": "textColor",
+      "label": "Text Color",
+      "type": "FILL_COLOR",
+      "defaultValue": "#282829"
+    }
+  ]
+}
