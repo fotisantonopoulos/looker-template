@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elegant Metric Card</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-cream: #fbfbf9;
+      --color-yellow: #ffeb00;
+      --color-dark: #282829;
+      --shadow-sm: 0 1px 3px rgba(40, 40, 41, 0.08);
+      --shadow-md: 0 4px 12px rgba(40, 40, 41, 0.12);
+      --shadow-lg: 0 12px 32px rgba(40, 40, 41, 0.15);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--color-cream);
+      color: var(--color-dark);
+      padding: 24px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 480px;
+      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .metric-card {
+      background: white;
+      border-radius: 16px;
+      padding: 48px 40px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .metric-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(40, 40, 41, 0.18);
+    }
+
+    .metric-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, 
+        var(--color-yellow) 0%, 
+        var(--color-yellow) 50%, 
+        var(--color-dark) 50%, 
+        var(--color-dark) 100%);
+      animation: slideAccent 3s ease-in-out infinite;
+    }
+
+    @keyframes slideAccent {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(10px); }
+    }
+
+    .metric-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      color: var(--color-dark);
+      opacity: 0.7;
+      margin-bottom: 16px;
+      animation: fadeIn 0.8s 0.2s both;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 0.7; }
+    }
+
+    .metric-value {
+      font-family: 'Poppins', sans-serif;
+      font-size: 68px;
+      font-weight: 600;
+      line-height: 1;
+      color: var(--color-dark);
+      margin-bottom: 24px;
+      animation: countUp 1.2s 0.4s both cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+
+    @keyframes countUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .metric-value::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 80px;
+      height: 2px;
+      background: var(--color-yellow);
+      animation: expandLine 0.6s 0.8s both cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes expandLine {
+      from { width: 0; }
+      to { width: 80px; }
+    }
+
+    .metric-change {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 24px;
+      background: rgba(255, 235, 0, 0.12);
+      color: var(--color-dark);
+      animation: slideIn 0.6s 1s both cubic-bezier(0.16, 1, 0.3, 1);
+      margin-bottom: 24px;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .metric-change.positive::before {
+      content: '↑';
+      color: var(--color-dark);
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .metric-change.negative::before {
+      content: '↓';
+      color: var(--color-dark);
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .metric-description {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--color-dark);
+      opacity: 0.65;
+      animation: fadeIn 0.6s 1.2s both;
+      letter-spacing: 0.2px;
+    }
+
+    .metric-footer {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(40, 40, 41, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      animation: fadeIn 0.6s 1.4s both;
+    }
+
+    .metric-timestamp {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--color-dark);
+      opacity: 0.5;
+    }
+
+    .metric-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      background: var(--color-dark);
+      color: var(--color-yellow);
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-radius: 4px;
+    }
+
+    /* Sparkline decoration */
+    .sparkline-container {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 40%;
+      height: 120px;
+      opacity: 0.05;
+      pointer-events: none;
+    }
+
+    .sparkline-path {
+      stroke: var(--color-dark);
+      stroke-width: 2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      animation: drawPath 2s 0.6s both ease-out;
+    }
+
+    @keyframes drawPath {
+      from { stroke-dashoffset: 500; }
+      to { stroke-dashoffset: 0; }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 540px) {
+      .metric-card {
+        padding: 32px 28px;
+      }
+
+      .metric-value {
+        font-size: 52px;
+      }
+
+      .metric-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="metric-card">
+      <div class="metric-label">Total Revenue</div>
+      <div class="metric-value" id="metricValue">$0</div>
+      <div class="metric-change positive" id="metricChange">
+        <span id="changeValue">+12.5%</span>
+        <span style="opacity: 0.6;">vs last period</span>
+      </div>
+      <div class="metric-description">
+        Outstanding performance this quarter with sustained growth across all segments.
+        Customer acquisition exceeding targets by significant margin.
+      </div>
+      <div class="metric-footer">
+        <div class="metric-timestamp">Updated 2 hours ago</div>
+        <div class="metric-badge">Live</div>
+      </div>
+
+      <!-- Decorative sparkline -->
+      <svg class="sparkline-container" viewBox="0 0 200 120" preserveAspectRatio="none">
+        <path class="sparkline-path" 
+              d="M 0,80 L 40,70 L 80,75 L 120,55 L 160,45 L 200,30"
+              stroke-dasharray="500"
+              stroke-dashoffset="500"/>
+      </svg>
+    </div>
+  </div>
+
+  <script>
+    // Looker Studio Integration
+    if (typeof dscc !== 'undefined') {
+      // Subscribe to Looker Studio data
+      dscc.subscribeToData(function(message) {
+        try {
+          const data = message.tables.DEFAULT;
+          const style = message.style;
+          
+          if (data && data.length > 0) {
+            const row = data[0];
+            
+            // Update metric value
+            const metricValue = row.metricValue ? row.metricValue[0] : 0;
+            const changePercent = row.changePercent ? row.changePercent[0] : 0;
+            const label = row.metricLabel ? row.metricLabel[0] : 'Total Revenue';
+            const description = row.description ? row.description[0] : 'Outstanding performance this quarter.';
+            
+            // Animate value update
+            animateValue(document.getElementById('metricValue'), 0, metricValue, 1200);
+            
+            // Update change
+            const changeEl = document.getElementById('metricChange');
+            const changeValueEl = document.getElementById('changeValue');
+            changeValueEl.textContent = (changePercent >= 0 ? '+' : '') + changePercent.toFixed(1) + '%';
+            changeEl.className = 'metric-change ' + (changePercent >= 0 ? 'positive' : 'negative');
+            
+            // Update label and description
+            document.querySelector('.metric-label').textContent = label.toUpperCase();
+            document.querySelector('.metric-description').textContent = description;
+          }
+        } catch (error) {
+          console.error('Error processing Looker Studio data:', error);
+        }
+      }, {transform: dscc.objectTransform});
+    } else {
+      // Demo mode - animate to demo value
+      animateValue(document.getElementById('metricValue'), 0, 847250, 1200, true);
+    }
+
+    // Value animation function
+    function animateValue(element, start, end, duration, isCurrency = true) {
+      const startTime = performance.now();
+      const range = end - start;
+      
+      function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Ease out cubic
+        const easeProgress = 1 - Math.pow(1 - progress, 3);
+        const current = start + (range * easeProgress);
+        
+        if (isCurrency) {
+          element.textContent = '$' + Math.floor(current).toLocaleString();
+        } else {
+          element.textContent = Math.floor(current).toLocaleString();
+        }
+        
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        }
+      }
+      
+      requestAnimationFrame(update);
+    }
+
+    // Update timestamp periodically
+    function updateTimestamp() {
+      const now = new Date();
+      const hours = Math.floor(Math.random() * 3) + 1;
+      document.querySelector('.metric-timestamp').textContent = 
+        `Updated ${hours} hour${hours > 1 ? 's' : ''} ago`;
+    }
+    
+    setInterval(updateTimestamp, 60000);
+  </script>
+</body>
+</html>

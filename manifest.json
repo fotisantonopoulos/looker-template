@@ -1,0 +1,148 @@
+{
+  "name": "Elegant Metric Card",
+  "organization": "Professional Analytics",
+  "description": "A beautifully designed metric card visualization with elegant animations and sophisticated styling. Perfect for showcasing KPIs and important metrics in your dashboards.",
+  "organizationUrl": "https://example.com",
+  "supportUrl": "https://example.com/support",
+  "privacyPolicyUrl": "https://example.com/privacy",
+  "termsOfServiceUrl": "https://example.com/terms",
+  "logoUrl": "https://example.com/logo.png",
+  "packageUrl": "https://example.com/elegant-metric-card",
+  "devMode": true,
+  "components": [
+    {
+      "id": "elegantMetricCard",
+      "name": "Elegant Metric Card",
+      "description": "Display key metrics with elegant styling and smooth animations",
+      "iconUrl": "https://example.com/icon.png",
+      "resource": {
+        "js": "looker-viz.html"
+      },
+      "config": {
+        "data": [
+          {
+            "id": "metrics",
+            "label": "Metric Configuration",
+            "elements": [
+              {
+                "id": "metricValue",
+                "label": "Metric Value",
+                "type": "METRIC",
+                "options": {
+                  "min": 1,
+                  "max": 1
+                }
+              },
+              {
+                "id": "changePercent",
+                "label": "Change Percentage",
+                "type": "METRIC",
+                "options": {
+                  "min": 0,
+                  "max": 1
+                }
+              },
+              {
+                "id": "metricLabel",
+                "label": "Metric Label",
+                "type": "DIMENSION",
+                "options": {
+                  "min": 0,
+                  "max": 1
+                }
+              },
+              {
+                "id": "description",
+                "label": "Description Text",
+                "type": "DIMENSION",
+                "options": {
+                  "min": 0,
+                  "max": 1
+                }
+              }
+            ]
+          }
+        ],
+        "style": [
+          {
+            "id": "colors",
+            "label": "Color Scheme",
+            "elements": [
+              {
+                "id": "primaryColor",
+                "label": "Primary Color",
+                "type": "COLOR_PICKER",
+                "defaultValue": "#ffeb00"
+              },
+              {
+                "id": "secondaryColor",
+                "label": "Secondary Color",
+                "type": "COLOR_PICKER",
+                "defaultValue": "#282829"
+              },
+              {
+                "id": "backgroundColor",
+                "label": "Background Color",
+                "type": "COLOR_PICKER",
+                "defaultValue": "#fbfbf9"
+              }
+            ]
+          },
+          {
+            "id": "typography",
+            "label": "Typography",
+            "elements": [
+              {
+                "id": "fontSize",
+                "label": "Value Font Size",
+                "type": "SELECT_SINGLE",
+                "options": [
+                  {
+                    "label": "Small",
+                    "value": "48px"
+                  },
+                  {
+                    "label": "Medium",
+                    "value": "64px"
+                  },
+                  {
+                    "label": "Large",
+                    "value": "72px"
+                  },
+                  {
+                    "label": "Extra Large",
+                    "value": "96px"
+                  }
+                ],
+                "defaultValue": "72px"
+              }
+            ]
+          },
+          {
+            "id": "animation",
+            "label": "Animation Settings",
+            "elements": [
+              {
+                "id": "enableAnimations",
+                "label": "Enable Animations",
+                "type": "CHECKBOX",
+                "defaultValue": true
+              }
+            ]
+          }
+        ],
+        "interactions": [
+          {
+            "id": "onClick",
+            "label": "Click Behavior",
+            "description": "Action to perform when the card is clicked",
+            "supportedActions": [
+              "FILTER",
+              "OPEN_LINK"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
